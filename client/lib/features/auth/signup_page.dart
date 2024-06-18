@@ -1,6 +1,6 @@
+import 'package:client/features/auth/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -43,22 +43,53 @@ class _SignupPageState extends State<SignupPage> {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: <Widget>[
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          print("Google");
-                        },
-                        icon: SvgPicture.asset(
-                          'assets/images/google.svg',
-                          height: 80,
-                          width: 80,
-                        ),
-                        label: const Text("Google"),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            print("dummy");
-                          },
-                          child: const Text("Dummy"))
+                      SizedBox(
+                          width: 250,
+                          height: 40,
+                          child: Tooltip(
+                            message: 'Google button',
+                            child: InkWell(
+                              onLongPress: () {
+                                print("Long Pressed");
+                              },
+                              child: Material(
+                                type: MaterialType
+                                    .transparency, // makes the button transparent
+                                child: ElevatedButton.icon(
+                                  onPressed: () {
+                                    print("Google");
+                                  },
+                                  icon: Image.asset(
+                                    'assets/images/Google.png',
+                                    width: 30,
+                                    height: 30,
+                                  ),
+                                  label: const Text(
+                                    "Google",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text("Already have an Account?"),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SigninPage()));
+                              },
+                              child: const Text(
+                                "Sign In",
+                                style: TextStyle(color: Colors.blue),
+                              ))
+                        ],
+                      )
                     ],
                   ))
             ],
